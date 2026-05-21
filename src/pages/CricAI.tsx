@@ -284,7 +284,7 @@ Our local data engine extracted these official stats for **${matchedPlayer.name}
 * **🛡️ Fielding & Extras:** **${matchedPlayer.catches} catches**
 * **🎖️ Player of the Match:** Crowned **${matchedPlayer.mom} times**
 
-**Strategic Value:** ${matchedPlayer.name} acts as a high-impact player, especially on ${isBatter ? 'batting' : 'bowling'} friendly pitches.`
+**Strategic Value:** ${matchedPlayer.name} acts as a high-impact player, especially on ${isBatter ? 'batting' : isBowler ? 'bowling' : 'balanced'} friendly pitches.`
     }
 
     // 3. Most Runs / Highest Runs / Orange Cap
@@ -843,7 +843,7 @@ I've scanned all **1,226 historical IPL matches** matching your query. Here is a
           marginBottom: 48
         }}
       >
-        <div style={{ display: 'flex', flexDirection: 'column', mdFlexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24, gap: 16 }}>
+        <div className="cricai-titans-header">
           <div>
             <SectionTitle>All-Time Titans of the Tournament</SectionTitle>
             <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: -16 }}>

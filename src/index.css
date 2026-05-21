@@ -488,6 +488,21 @@ body {
   }
 }
 
+.cricai-titans-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+@media (min-width: 768px) {
+  .cricai-titans-header {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
 
 
 
