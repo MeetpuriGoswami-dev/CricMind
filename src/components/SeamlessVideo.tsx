@@ -113,7 +113,6 @@ export default function SeamlessVideo({ src }: Props) {
         muted
         playsInline
         preload="auto"
-        defaultMuted
         style={{
           position: 'absolute',
           top: 0,
@@ -135,7 +134,6 @@ export default function SeamlessVideo({ src }: Props) {
         muted
         playsInline
         preload="auto"
-        defaultMuted
         style={{
           position: 'absolute',
           top: 0,
