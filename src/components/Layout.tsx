@@ -55,14 +55,24 @@ export default function Layout({ page, setPage, children }: Props) {
             style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10 }}
           >
             <div style={{
-              width: 36, height: 36,
+              width: 42, height: 42,
               background: 'linear-gradient(135deg, rgba(0,255,156,0.3), rgba(0,194,255,0.2))',
               border: '1px solid rgba(0,255,156,0.4)',
-              borderRadius: 8,
+              borderRadius: '50%',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 18,
               boxShadow: '0 0 12px rgba(0,255,156,0.3)',
-            }}>⬡</div>
+              overflow: 'hidden'
+            }}>
+              <img 
+                src="/logo.jpg" 
+                alt="CricMind Logo" 
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'cover' 
+                }} 
+              />
+            </div>
             <span className="font-display" style={{ fontSize: 18, letterSpacing: '0.15em', color: '#fff' }}>
               CRIC<span className="neon-green">MIND</span>
             </span>
