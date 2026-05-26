@@ -22,8 +22,10 @@ export default function SeamlessVideo({ src }: Props) {
 
     // Prep both videos for silent background playback
     v1.muted = true
+    v1.defaultMuted = true
     v1.playsInline = true
     v2.muted = true
+    v2.defaultMuted = true
     v2.playsInline = true
 
     v1.load()
@@ -79,9 +81,25 @@ export default function SeamlessVideo({ src }: Props) {
     // Initial play for the first video
     v1.play().catch(err => console.warn('Error initial play:', err))
 
+    // Fallback: Attempt play on user interaction if blocked by autoplay policies
+    const handleInteraction = () => {
+      const active = activeVideoRef.current
+      const currentVideo = active === 1 ? v1 : v2
+      if (currentVideo.paused) {
+        currentVideo.play().catch(() => {})
+      }
+    }
+
+    window.addEventListener('click', handleInteraction, { once: true })
+    window.addEventListener('touchstart', handleInteraction, { once: true })
+    window.addEventListener('scroll', handleInteraction, { once: true })
+
     return () => {
       v1.removeEventListener('timeupdate', handleTimeUpdate1)
       v2.removeEventListener('timeupdate', handleTimeUpdate2)
+      window.removeEventListener('click', handleInteraction)
+      window.removeEventListener('touchstart', handleInteraction)
+      window.removeEventListener('scroll', handleInteraction)
     }
   }, [src]) // Only re-run if the src changes, never on activeVideo toggle!
 
@@ -90,8 +108,12 @@ export default function SeamlessVideo({ src }: Props) {
       <video
         ref={videoRef1}
         src={src}
+        loop
+        autoPlay
         muted
         playsInline
+        preload="auto"
+        defaultMuted
         style={{
           position: 'absolute',
           top: 0,
@@ -108,8 +130,12 @@ export default function SeamlessVideo({ src }: Props) {
       <video
         ref={videoRef2}
         src={src}
+        loop
+        autoPlay
         muted
         playsInline
+        preload="auto"
+        defaultMuted
         style={{
           position: 'absolute',
           top: 0,
